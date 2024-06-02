@@ -1,0 +1,11 @@
+Episode 1 finished after 36 timesteps
+Episode 2 finished after 47 timesteps
+Episode 3 finished after 44 timesteps
+Episode 4 finished after 48 timesteps
+Episode 5 finished after 40 timesteps
+Episode 6 finished after 51 timesteps
+Episode 7 finished after 52 timesteps
+Episode 8 finished after 49 timesteps
+Episode 9 finished after 36 timesteps
+Episode 10 finished after 38 timesteps
+Durations: [36, 47, 44, 48, 40, 51, 52, 49, 36, 38]
