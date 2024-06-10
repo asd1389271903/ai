@@ -2,7 +2,7 @@
 import datetime
 import requests
 
-# 獲取當前月份
+# 獲取當前月份和時間
 current_time = datetime.datetime.now()
 month = current_time.month
 hour = current_time.hour
@@ -33,11 +33,13 @@ else:
 try:
     response = requests.get('https://ipinfo.io?token=6a4407cf14d781')
     location_data = response.json()
-    #print("Location Data:", location_data)  # 輸出位置數據以進行檢查
     location = location_data.get('city', '台北')  # 如果無法獲取城市，預設為台北
 except Exception as e:
     location = '台北'
     print(f"Error fetching location: {e}")
+
+# 輸入用戶的特殊需求
+special_request = input("請輸入您的特殊需求（例如：我想吃飯或麵，我想吃冷的）：")
 
 # 確保 Groq 客戶端模組已正確導入
 try:
@@ -48,7 +50,7 @@ try:
 
     # 構建消息內容，並明確指示使用繁體中文
     message_content = f"""
-    現在是{current_time.strftime('%Y年%m月%d日 %H:%M')}，我在{location}，季節是{season}，目前是{meal_time}時間。請問這個時間點推薦吃什麼？請顧慮營養均衡，並全部使用繁體中文回答，請將所有食物名稱翻譯成中文。
+    現在是{current_time.strftime('%Y年%m月%d日 %H:%M')}，我在{location}，季節是{season}，目前是{meal_time}時間。我想吃{special_request}。請問這個時間點推薦吃什麼？請顧慮營養均衡，並全部使用繁體中文回答，請將所有食物名稱翻譯成中文。
     """
 
     try:
@@ -61,7 +63,7 @@ try:
                 }
             ],
             model="llama3-70b-8192",
-            temperature=0.6,  # 控制生成文本的多樣性和冒險程度
+            temperature=0.3,  # 控制生成文本的多樣性和冒險程度
             max_tokens=500  # 控制生成文本的長度
         )
 
