@@ -1,3 +1,4 @@
+#由chatgpt輔助
 import os
 import sys
 from groq import Groq
